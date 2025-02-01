@@ -1,4 +1,4 @@
-import React from 'react'
+import "../styles/SubmitPage.css";
 
 const SubmitPage = () => {
   return (

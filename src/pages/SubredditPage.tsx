@@ -1,4 +1,4 @@
-import React from 'react'
+import "../styles/SubredditPage.css";
 
 const SubredditPage = () => {
   return (
