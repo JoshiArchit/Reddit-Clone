@@ -15,4 +15,9 @@ export default defineSchema({
   })
     .index("byExternalId", ["externalId"])
     .index("byUsername", ["username"]), // Indexing by externalId
+  subreddit: defineTable({
+    name: v.string(),
+    description: v.optional(v.string()),
+    creatorId: v.id("users"),
+  }),
 });
