@@ -34,7 +34,12 @@ const NavBar = () => {
 
           <Authenticated>
             <div className="dropdown-container">
-              <button className="icon-button" onClick={() => {setShowDropDown(!showDropDown)}}>
+              <button
+                className="icon-button"
+                onClick={() => {
+                  setShowDropDown(!showDropDown);
+                }}
+              >
                 <FaPlus />
               </button>
               {showDropDown && (

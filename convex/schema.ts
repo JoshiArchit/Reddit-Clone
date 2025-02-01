@@ -15,4 +15,18 @@ export default defineSchema({
   })
     .index("byExternalId", ["externalId"])
     .index("byUsername", ["username"]), // Indexing by externalId
+  subreddit: defineTable({
+    name: v.string(),
+    description: v.optional(v.string()),
+    creatorId: v.id("users"),
+  }),
+  post: defineTable({
+    subject: v.string(),
+    body: v.string(),
+    authorId: v.id("users"),
+    subreddit: v.id("subreddit"),
+    image: v.optional(v.id("_storage")),
+  })
+    .index("bySubreddit", ["subreddit"])
+    .index("byAuthor", ["authorId"]),
 });
