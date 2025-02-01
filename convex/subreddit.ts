@@ -1,8 +1,9 @@
 /* Mutation for creating a subreddit */
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { getCurrentUserOrThrow } from "./users";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 
+// Mutation to create subreddit from submission
 export const create = mutation({
   args: {
     name: v.string(),
@@ -23,4 +24,21 @@ export const create = mutation({
       creatorId: user._id,
     });
   },
+});
+
+// Mutation to retrive subreddits
+export const get = query({
+    args: { name: v.string() },
+    handler: async (ctx, args) => {
+        const subreddit = await ctx.db
+            .query("subreddit")
+            .filter((q) => q.eq(q.field("name"), args.name))
+            .unique();
+
+        if(!subreddit) {
+            return null;
+        }
+
+        return subreddit;
+    },
 });
