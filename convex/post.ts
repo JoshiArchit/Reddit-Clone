@@ -68,7 +68,7 @@ async function getEnrichedPost(
 }
 
 // Helper function to get enriched posts
-async function getEnrichedPosts(
+export async function getEnrichedPosts(
   ctx: QueryCtx,
   posts: Doc<"post">[]
 ): Promise<EnrichedPost[]> {
