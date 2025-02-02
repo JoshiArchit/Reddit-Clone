@@ -116,9 +116,22 @@ const PostCard = ({
   const { user } = useUser();
   const ownedByUser = post.author?.username === user?.username;
 
+  const deletePost = useMutation(api.post.deletePost)
+
   const handleComment = () => {};
-  const handleDelete = async () => {};
-  const handleSubmit = () => {};
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+        await deletePost({ id: post._id });
+        if(expandedView) {
+            navigate("/");
+        }
+      }
+  };
+
+  const handleSubmit = () => {
+    
+  };
 
   return (
     <div className="post-card ${expandedView ? 'expanded' : ''}">
