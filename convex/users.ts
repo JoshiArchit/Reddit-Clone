@@ -5,6 +5,7 @@ Mutations for users.
 import { internalMutation, query, QueryCtx } from "./_generated/server";
 import { UserJSON } from "@clerk/backend";
 import { v, Validator } from "convex/values";
+import { counts, postCountKey } from "./counter";
 
 export const current = query({
   args: {},
@@ -65,3 +66,20 @@ async function userByExternalId(ctx: QueryCtx, externalId: string) {
     .withIndex("byExternalId", (q) => q.eq("externalId", externalId))
     .unique();
 }
+
+// Stats using Convex counters
+export const getPublicUser = query({
+  args: { username: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("byUsername", (q) => q.eq("username", args.username))
+      .unique();
+
+    if (!user) return {posts:0}
+
+    const postCount = await counts.count(ctx, postCountKey(user._id));
+
+    return { posts: postCount };
+  },
+});

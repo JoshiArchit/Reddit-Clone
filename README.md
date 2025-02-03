@@ -8,7 +8,11 @@
   - Documentation - https://docs.convex.dev/quickstart/react
   - Start off :
   `npm install convex`
+    - Generates the api.d.ts file which is dynamic. Can be put in .gitignore.
   `npx convex dev`
+  - Sharded counter-
+    `npm install @convex-dev/sharded-counter`
+    - https://www.convex.dev/components/sharded-counter
     
 
 - Authentication - Clerk
