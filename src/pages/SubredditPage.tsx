@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import "../styles/SubredditPage.css";
-import PostCard from "../components/Postcard";
+import PostCard from "../components/PostCard";
 
 const SubredditPage = () => {
   const { subredditName } = useParams();

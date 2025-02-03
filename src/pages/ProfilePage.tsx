@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import PostCard from "../components/Postcard";
+import PostCard from "../components/PostCard";
 import "../styles/ProfilePage.css";
 
 const ProfilePage = () => {

@@ -15,11 +15,13 @@ export default defineSchema({
   })
     .index("byExternalId", ["externalId"])
     .index("byUsername", ["username"]), // Indexing by externalId
+
   subreddit: defineTable({
     name: v.string(),
     description: v.optional(v.string()),
     creatorId: v.id("users"),
   }),
+
   post: defineTable({
     subject: v.string(),
     body: v.string(),
@@ -29,4 +31,12 @@ export default defineSchema({
   })
     .index("bySubreddit", ["subreddit"])
     .index("byAuthor", ["authorId"]),
+
+  // Can add pagination to comments using inbuilt Convex pagination
+  comment: defineTable({
+    content: v.string(),
+    postId: v.id("post"),
+    authorId: v.id("users"),
+  })
+    .index("byPost", ["postId"])
 });
